@@ -57,26 +57,21 @@ def velocity(x, route):
     v = interpolate.pchip_interpolate(distance_km, speed_kmph,x)
     return v
 
-def trapets (a,b,n,fx):
+def trapets (a,b,n,fx): #INTE FUCKING GENRELLT
     h = (b-a )/n
     T = h *(np.sum(fx) - (fx[0]+fx[-1])/2)
     return T
 
 ### PART 2A ###
 def time_to_destination(x, route, n):
-    fx = 1/velocity(np.linspace (1,x,n+1), route)
-    a = trapets(1, x, n, fx)
+    fx = 1/velocity(np.linspace (0,x,n+1), route) #INTE FUCKING GENERELLT
+    a = trapets(0, x, n, fx)
     return a
 
     
-    
-    
-    
-
 ### PART 2B ###
 def total_consumption(x, route, n):
-    # REMOVE THE FOLLOWING LINE AND WRITE YOUR SOLUTION
-    raise NotImplementedError('total_consumption not implemented yet!')
+    return trapets(0, x, n, consumption(velocity(np.linspace(0,x,n+1), route)))
 
 ### PART 3A ###
 def distance(T, route): 
