@@ -34,6 +34,6 @@ plt.legend(loc="upper right")
 ax.set(xlabel='Antal delinterval', ylabel='Integrationsfel', title='Konvergensstudie')
 ax.grid()
 
-fig.savefig("konvergensstudie.png")
+fig.savefig("Konvergensstudie_2c.png")
 plt.xlim(xmin=1)
 plt.show()
