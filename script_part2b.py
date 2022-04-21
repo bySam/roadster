@@ -1,5 +1,4 @@
 #script part2b, Sammy, Nikolai, Aron
-
 import roadster
 import numpy as np
 
