@@ -57,14 +57,14 @@ def velocity(x, route):
     v = interpolate.pchip_interpolate(distance_km, speed_kmph,x)
     return v
 
-def trapets (a,b,n,fx): #INTE FUCKING GENRELLT
+def trapets (a,b,n,fx):
     h = (b-a )/n
     T = h *(np.sum(fx) - (fx[0]+fx[-1])/2)
     return T
 
 ### PART 2A ###
 def time_to_destination(x, route, n):
-    fx = 1/velocity(np.linspace (0,x,n+1), route) #INTE FUCKING GENERELLT
+    fx = 1/velocity(np.linspace (0,x,n+1), route) 
     a = trapets(0, x, n, fx)
     return a
 
