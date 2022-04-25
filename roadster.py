@@ -77,9 +77,10 @@ def total_consumption(x, route, n):
 def distance(T, route):
     dist, speed = load_route(route)
     n = 80000
+    tol = 10**(-4)
     x = T*(sum(speed)/len(speed))
     dx = -(time_to_destination(x, route, n)-T)/(1/velocity(x, route))
-    while (np.abs(dx) > 10**(-4)):
+    while (np.abs(dx) > tol):
         x = x + dx
         dx = -(time_to_destination(x, route, n)-T)/(1/velocity(x, route))
     return x
