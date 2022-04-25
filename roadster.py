@@ -88,7 +88,7 @@ def distance(T, route):
 def reach(C, route):
     dist, speed = load_route(route)
     n = 80000
-    if C > total_consumption(dist[-1], route, n):
+    if C >= total_consumption(dist[-1], route, n):
         return dist[-1]
     x = dist[-1]/2
     tol = 10**(-4)
