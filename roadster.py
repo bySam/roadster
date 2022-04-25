@@ -85,9 +85,7 @@ def distance(T, route):
         dx = -(time_to_destination(x, route, n)-T)/(1/velocity(x, route))
     return x
 
-
-
-def reach(C, route): # funkar inte helt
+def reach(C, route):
     dist, speed = load_route(route)
     n = 80000
     if C > total_consumption(dist[-1], route, n):
