@@ -79,7 +79,7 @@ def distance(T, route):
     n = 80000
     tol = 10**(-4)
     x = T*(sum(speed)/len(speed))
-    dx = -(time_to_destination(x, route, n)-T)/(1/velocity(x, route))
+    dx = 2 * tol
     while (np.abs(dx) > tol):
         x = x + dx
         dx = -(time_to_destination(x, route, n)-T)/(1/velocity(x, route))
