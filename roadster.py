@@ -74,11 +74,33 @@ def total_consumption(x, route, n):
     return trapets(0, x, n, consumption(velocity(np.linspace(0,x,n+1), route)))
 
 ### PART 3A ###
-def distance(T, route): 
-    # REMOVE THE FOLLOWING LINE AND WRITE YOUR SOLUTION
-    raise NotImplementedError('distance not implemented yet!')
+def distance(T, route):
+    dist, speed = load_route(route)
+    n = 80000
+    x = T*(sum(speed)/len(speed))
+    dx = -(time_to_destination(x, route, n)-T)/(1/velocity(x, route))
+    while (np.abs(dx) > 10**(-4)):
+        x = x + dx
+        dx = -(time_to_destination(x, route, n)-T)/(1/velocity(x, route))
+    return x
 
-### PART 3B ###
-def reach(C, route):
-    # REMOVE THE FOLLOWING LINE AND WRITE YOUR SOLUTION
-    raise NotImplementedError('reach not implemented yet!')
+
+
+def reach(C, route): # funkar inte helt
+    dist, speed = load_route(route)
+    n = 80000
+    tol = 10**(-4)
+    x = dist[-1]/2
+    print("Initialt x: ", x)
+    tol = 10**(-4)
+    dx = 2 * tol
+    print("Initial dx: ", dx)
+    i = 0
+    while (abs(dx) > tol):
+        i +=1
+        x = x + dx
+        print("x:", x)
+        dx = -(total_consumption(x, route, n)-C)/consumption(velocity(x, route))
+        print("dx:", dx)
+    print("Iterationer:", i)
+    return x
