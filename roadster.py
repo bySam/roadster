@@ -92,7 +92,6 @@ def reach(C, route): # funkar inte helt
     n = 80000
     if C > total_consumption(dist[-1], route, n):
         return dist[-1]
-    tol = 10**(-4)
     x = dist[-1]/2
     tol = 10**(-4)
     dx = 2 * tol
