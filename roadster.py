@@ -89,18 +89,13 @@ def distance(T, route):
 def reach(C, route): # funkar inte helt
     dist, speed = load_route(route)
     n = 80000
+    if C > total_consumption(dist[-1], route, n):
+        return dist[-1]
     tol = 10**(-4)
     x = dist[-1]/2
-    print("Initialt x: ", x)
     tol = 10**(-4)
     dx = 2 * tol
-    print("Initial dx: ", dx)
-    i = 0
     while (abs(dx) > tol):
-        i +=1
         x = x + dx
-        print("x:", x)
         dx = -(total_consumption(x, route, n)-C)/consumption(velocity(x, route))
-        print("dx:", dx)
-    print("Iterationer:", i)
     return x
