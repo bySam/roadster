@@ -83,8 +83,8 @@ def distance(T, route):
     x = T*(sum(speed)/len(speed))
     dx = 2 * tol
     while (np.abs(dx) > tol):
-        x = x + dx
         dx = -(time_to_destination(x, route, n)-T)/(1/velocity(x, route))
+        x = x + dx
     return x
 
 def reach(C, route):
