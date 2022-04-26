@@ -95,8 +95,9 @@ def reach(C, route):
         return dist[-1]
     x = dist[-1]/2
     tol = 10**(-4)
-    dx = 2 * tol
+    dx = -(total_consumption(x, route, n)-C)/consumption(velocity(x, route))
     while (abs(dx) > tol):
-        dx = -(total_consumption(x, route, n)-C)/consumption(velocity(x, route))
         x = x + dx
+        dx = -(total_consumption(x, route, n)-C)/consumption(velocity(x, route))
+        
     return x
