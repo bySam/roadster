@@ -81,10 +81,11 @@ def distance(T, route):
         return dist[-1]
     tol = 10**(-4)
     x = T*(sum(speed)/len(speed))
-    dx = 2 * tol
+    dx = -(time_to_destination(x, route, n)-T)/(1/velocity(x, route)) #För det osannolika fallet att x0 är nära x
     while (np.abs(dx) > tol):
-        dx = -(time_to_destination(x, route, n)-T)/(1/velocity(x, route))
         x = x + dx
+        dx = -(time_to_destination(x, route, n)-T)/(1/velocity(x, route))
+        
     return x
 
 def reach(C, route):
