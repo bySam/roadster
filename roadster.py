@@ -77,6 +77,8 @@ def total_consumption(x, route, n):
 def distance(T, route):
     dist, speed = load_route(route)
     n = 80000
+    if T >= time_to_destination(dist[-1], route, n):
+        return dist[-1]
     tol = 10**(-4)
     x = T*(sum(speed)/len(speed))
     dx = 2 * tol
