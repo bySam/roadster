@@ -29,28 +29,24 @@ def route_nyc(t,x):
 ### PART 4A ###
 def nyc_route_traveler_euler(t0,h):
     v = route_nyc(t0, 0)
-    time = [t0]
-    speed = [v]
-    position = [0]
+    time_h = [t0]
+    speed_kmph = [v]
+    distance_km = [0]
     x = 0
     t = t0
-    dif = 60 - x   
-    while dif > h:
-        x += v*h
-        t = t+h
+    while x + (v*h) < 60:
+        x +=v*h
+        t +=h
         v = route_nyc(x, t)
-        dif = 60 - x
-        time.append(t)
-        speed.append(v)
-        position.append(x)
-        print(v)
-    h = dif / v
-    x += t*h
+        time_h.append(t)
+        speed_kmph.append(v)
+        distance_km.append(x)
+    h = (60 - x) / v
+    x += v*h
     t = t+h
     v = route_nyc(x, t)
-    time.append(t)
-    speed.append(v)
-    position.append(x)
-    return np.array(time), np.array(position), np.array(speed)
+    time_h.append(t)
+    speed_kmph.append(v)
+    distance_km.append(x)
+    return np.array(time_h,dtype=object), np.array(distance_km,dtype=object), np.array(speed_kmph,dtype=object)
 
-nyc_route_traveler_euler(8.5, 1)
