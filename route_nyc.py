@@ -28,5 +28,29 @@ def route_nyc(t,x):
 
 ### PART 4A ###
 def nyc_route_traveler_euler(t0,h):
-    # REMOVE THE FOLLOWING LINE AND WRITE YOUR SOLUTION
-    raise NotImplementedError('nyc_route_traveler_euler not implemented yet!')
+    v = route_nyc(t0, 0)
+    time = [t0]
+    speed = [v]
+    position = [0]
+    x = 0
+    t = t0
+    dif = 60 - x   
+    while dif > h:
+        x += v*h
+        t = t+h
+        v = route_nyc(x, t)
+        dif = 60 - x
+        time.append(t)
+        speed.append(v)
+        position.append(x)
+        print(v)
+    h = dif / v
+    x += t*h
+    t = t+h
+    v = route_nyc(x, t)
+    time.append(t)
+    speed.append(v)
+    position.append(x)
+    return np.array(time), np.array(position), np.array(speed)
+
+nyc_route_traveler_euler(8.5, 1)
