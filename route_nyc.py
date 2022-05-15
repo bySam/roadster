@@ -28,24 +28,31 @@ def route_nyc(t,x):
 
 ### PART 4A ###
 def nyc_route_traveler_euler(t0,h):
-    v = route_nyc(t0, 0)
-    time_h = [t0]
-    speed_kmph = [v]
-    distance_km = [0]
+    v = float(route_nyc(t0, 0))
     x = 0
+    time = [float(t0)]
+    speed = [float(v)]
+    position = [float(x)]
     t = t0
-    while x + (v*h) < 60:
-        x +=v*h
-        t +=h
-        v = route_nyc(t, x)
-        time_h.append(t), speed_kmph.append(v), distance_km.append(x)
-        if t > 24:
-            t = t - 24 #Inte nödväntigt men snyggt, kan då gå över dygn bytet t.ex t0 = 23.9
-            
-    h = (60 - x) / v
-    x += v*h
+    
+    while x + v*h < 60:
+        x = x + v*h
+        t = t + h
+        v = float(route_nyc(t, x))
+        time.append(float(t))
+        speed.append(float(v))
+        position.append(float(x))
+        if t >= 24:
+            t = t - 24
+    
+    h = (60 - x)/v
+    x = x + v*h
     t = t+h
-    v = route_nyc(t, x)
-    time_h.append(t), speed_kmph.append(v), distance_km.append(x)
-    return np.array(time_h,dtype=object), np.array(distance_km,dtype=object), np.array(speed_kmph,dtype=object)
-
+    v = route_nyc(t,x)
+    time.append(float(t))
+    speed.append(float(v))
+    position.append(float(x))
+    time_h = np.array(time)
+    distance_km = np.array(position)
+    speed_kmph = np.array(speed)
+    return time_h, distance_km, speed_kmph
